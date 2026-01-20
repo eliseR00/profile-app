@@ -1,5 +1,5 @@
 import women from "../assets/women.png";
-const Card = () => {
+const Card1 = () => {
     const name = "Ava";
     const title = "UX Designer"
 
@@ -11,4 +11,4 @@ const Card = () => {
         </div>
     );
 }
-export default Card;
+export default Card1;
