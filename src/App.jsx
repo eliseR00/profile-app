@@ -12,6 +12,7 @@ import Filters from './components/Filters.jsx';
 import AddProfileForm from './components/AddProfileForm.jsx';
 import './components/toggleBtn.module.css';
 import './components/pageContainer.module.css';
+import FetchedProfiles from './components/FetchedProfiles.jsx';
 
 
 
@@ -74,16 +75,26 @@ function App() {
     <PageContainer toggleStyles={toggleStyles} styles={styles}>
 
 
-      <Navbar toggleStyles={toggleStyles} toggleText={styles} />
+      <Navbar toggleStyles={toggleStyles} styles={styles} />
 
       <Wrapper id="about">
         <About toggleStyles={toggleStyles} styles={styles} />
         <button onClick={handleClick}>
           {clicked ? "Clicked" : "Click me"}</button>
       </Wrapper>
+      <Wrapper>
+        <FetchedProfiles />
+      </Wrapper>
+      
 
       <Wrapper id="profiles">
-        <Filters titles={titles} title={title} name={name}handleChange={handleChangeTitle} handleSearch={handleSearch} handleClick={handleClear}/>
+        <Filters 
+        titles={titles} 
+        title={title} 
+        name={name}
+        handleChange={handleChangeTitle} 
+        handleSearch={handleSearch}
+        handleClick={handleClear}/>
        <div className="cards-container">
           {filteredProfiles.length>0? 
           filteredProfiles.map((profile) => (
@@ -101,6 +112,10 @@ function App() {
           </Wrapper>
           <Wrapper id="add-profile">
             <AddProfileForm onAddProfile={updateProfiles} />
+          </Wrapper>
+
+          <Wrapper>
+
           </Wrapper>
 
           

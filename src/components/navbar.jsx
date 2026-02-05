@@ -1,7 +1,12 @@
+
+import './Navbar.module.css';
 import styles from './toggleBtn.module.css';
 
-const Navbar = ({toggleStyles, toggleText}) => {
-    const buttonText = toggleText === "light-mode" ? "Dark Mode" : "Light Mode";
+
+
+const Navbar = ({toggleStyles, styles: toggleStylesClass}) => {
+    const buttonText = toggleStylesClass === "light-mode" ? "Dark Mode" : "Light Mode";
+    const styles = toggleStylesClass;
     return (
         <div className="navbar">
             <ul className="nav-links">

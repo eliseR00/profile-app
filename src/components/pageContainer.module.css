@@ -9,7 +9,7 @@
   color: #202020;
 }
 
-Card.light-mode {
-  background-color: #EF9CA8;
-  color: #202020;   
+.dark-mode {
+  background-color: #3C3C38;
+  color: #f8f4e3;
 }
