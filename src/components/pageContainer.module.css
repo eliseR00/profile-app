@@ -1,0 +1,15 @@
+.page-container {
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px #232323;
+}
+
+.light-mode {
+  background-color: #ffffff;
+  color: #202020;
+}
+
+Card.light-mode {
+  background-color: #EF9CA8;
+  color: #202020;   
+}

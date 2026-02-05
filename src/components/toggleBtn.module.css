@@ -1,0 +1,12 @@
+#mode-toggle {
+    align-items: right;
+}
+
+.light-mode .navbar {
+  background-color: #E5446D;
+  padding: 1em 2em;
+  border-radius: 8px;
+  margin-bottom: 2em;
+  color:#2A2B2A;
+  box-shadow: 10px 10px 5px #2A2B2A;
+}
