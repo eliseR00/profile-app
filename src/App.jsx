@@ -15,6 +15,16 @@ import './components/pageContainer.module.css';
 import FetchedProfiles from './components/FetchedProfiles.jsx';
 
 
+import { HashRouter, Routes, Route, Link} from "react-router-dom";
+
+import HomePage from './pages/HomePage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import AddProfilePage from './pages/AddProfilePage.jsx';
+import OtherProfilesPage from './pages/OtherProfilesPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import styles from "./pages/AddProfilePage.module.css";
+
+
 
 function App() {
   const [profiles, setProfiles] = useState([
@@ -71,57 +81,29 @@ function App() {
 
   return (
 
-          <div className={styles}>
-    <PageContainer toggleStyles={toggleStyles} styles={styles}>
+    <PageContainer toggleStyles={toggleStyles} styles={styles}> 
+      <HashRouter>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/aboutpage">About</Link></li>
+            <li><Link to="/add-profile">Add Profile</Link></li>
+            <li><Link to="/other-profiles">Other Profiles</Link></li>
+          </ul>
+        </nav>
 
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/aboutpage" element={<AboutPage />} />
+        <Route path="/add-profile" element={<AddProfilePage />} />
+        <Route path="/other-profiles" element={<OtherProfilesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </HashRouter>
+  </PageContainer>
 
-      <Navbar toggleStyles={toggleStyles} styles={styles} />
-
-      <Wrapper id="about">
-        <About toggleStyles={toggleStyles} styles={styles} />
-        <button onClick={handleClick}>
-          {clicked ? "Clicked" : "Click me"}</button>
-      </Wrapper>
-      <Wrapper>
-        <FetchedProfiles />
-      </Wrapper>
-      
-
-      <Wrapper id="profiles">
-        <Filters 
-        titles={titles} 
-        title={title} 
-        name={name}
-        handleChange={handleChangeTitle} 
-        handleSearch={handleSearch}
-        handleClick={handleClear}/>
-       <div className="cards-container">
-          {filteredProfiles.length>0? 
-          filteredProfiles.map((profile) => (
-            <Card className={styles} styles={styles} toggleStyles={toggleStyles}
-            key={profile.id}
-            name={profile.name}
-            title={profile.title}
-            image={profile.image}
-            /> 
-          )) : (
-            <p>No profiles found</p>
-          )}
-
-        </div>      
-          </Wrapper>
-          <Wrapper id="add-profile">
-            <AddProfileForm onAddProfile={updateProfiles} />
-          </Wrapper>
-
-          <Wrapper>
-
-          </Wrapper>
-
+    
           
-    </PageContainer>
-    </div>
-
     );
 }
 

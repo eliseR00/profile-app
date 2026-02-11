@@ -62,9 +62,9 @@ body{
 
 .cards-container {
   display: flex;
-  justify-content: center;
   gap: 2em;
   margin-top: 2em;
+  width: 100%;
 }
 
 
