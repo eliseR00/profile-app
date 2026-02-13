@@ -7,20 +7,23 @@ const ProfileDetailPage = () => {
     const [profile, setProfile] = useState(null);
 
     useEffect(() => {
-        fetch(`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-id.php?id=${id})`)
+        fetch(`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-id.php?id=${id}`)
             .then(res => res.json())
             .then(res => setProfile(res))
-    }, [id])
+    }, [id]);
 
     return profile ? (
         <Wrapper>
-            <h1>{name}</h1>
+            <h1>{profile.name}</h1>
 
-            <img src={src} alt={name} />
-            <p>{email}</p>
-            <p>{title}</p>
+            <img src={profile.image_url} alt={profile.name} width="500" />
+            <p>{profile.email}</p>
+            <p>{profile.title}</p>
+            <p>{profile.bio}</p>
         </Wrapper>
-    ) : (<Wrapper><p>Loading</p></Wrapper>)
+    ) : (
+        <Wrapper><p>Loading</p></Wrapper>
+    )
 
 }
 export default ProfileDetailPage;

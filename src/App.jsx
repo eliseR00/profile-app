@@ -98,7 +98,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutpage" element={<AboutPage />} />
-        <Route path="/add-profile" element={<AddProfilePage />} />
+        <Route path="/add-profile" element={<AddProfilePage updateProfiles={updateProfiles}/>} />
         <Route path="/other-profiles" element={<OtherProfilesPage />} />
         <Route path="/other-profiles/profile/:id" element={<ProfileDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
