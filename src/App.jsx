@@ -24,6 +24,8 @@ import OtherProfilesPage from './pages/OtherProfilesPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import styles from "./pages/AddProfilePage.module.css";
 
+import ProfileDetailPage from './pages/ProfileDetailPage.jsx';  
+
 
 
 function App() {
@@ -89,6 +91,7 @@ function App() {
             <li><Link to="/aboutpage">About</Link></li>
             <li><Link to="/add-profile">Add Profile</Link></li>
             <li><Link to="/other-profiles">Other Profiles</Link></li>
+            <li><Link to="/profile-details">Profile Details</Link></li>
           </ul>
         </nav>
 
@@ -97,6 +100,7 @@ function App() {
         <Route path="/aboutpage" element={<AboutPage />} />
         <Route path="/add-profile" element={<AddProfilePage />} />
         <Route path="/other-profiles" element={<OtherProfilesPage />} />
+        <Route path="/other-profiles/profile/:id" element={<ProfileDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>
