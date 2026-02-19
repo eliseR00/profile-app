@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import Filters from './Filters.jsx';
 import Card from './Card.jsx';
+import {Link} from "react-router-dom";
 
 
 const FetchedProfiles = () => {
@@ -14,7 +15,7 @@ const FetchedProfiles = () => {
     const handleChangeTitle = (event) => {
         setTitle(event.target.value);
         console.log(event.target.value);
-    }
+    };
 
     const handleSearch = (event) => {
         setName(event.target.value);
@@ -30,16 +31,16 @@ const FetchedProfiles = () => {
     useEffect(() => {
         fetch("https://web.ics.purdue.edu/~zong6/profile-app/get-titles.php")
         //data is written as string, so we need to convert it to json
-        .then(res => res.json())
-        .then(res => setTitles(res.titles));
+        .then((res) => res.json())
+        .then((res) => setTitles(res.titles));
     },[]);
 
     //fetch profiles
     //when title or search changes, we want to refetch the data
     useEffect(() => {
         fetch(`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-filter.php?title=${title}&name=${name}`)
-        .then(res => res.json())
-        .then(res => setProfiles(res.profiles));
+        .then((res) => res.json())
+        .then((res) => setProfiles(res.profiles));
     }, [title, name]);  
 
 
@@ -56,12 +57,14 @@ const FetchedProfiles = () => {
         <div className="cards-container">
           {profiles.length>0? (
             profiles.map((profile) => (
-              <Card
+            <Link key={profile.id} to={`/fetched-profiles/profile/${profile.id}`}> 
+            <Card
               key={profile.id}
               name={profile.name}
               title={profile.title}
               image={profile.image_url}
               /> 
+              </Link> 
             ))
           ) : (
             <p>No profiles found</p>

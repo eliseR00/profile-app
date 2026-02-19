@@ -19,3 +19,19 @@
   color:#E5446D;
   box-shadow: 10px 10px 5px #E5446D;
 }
+
+styleNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background-color: #E5446D;
+    color: #2A2B2A;
+    box-shadow: 10px 10px 5px #2A2B2A;
+}
+.navbar {
+  border: 2px solid red;
+}
+button {
+  border: 2px solid blue;
+}

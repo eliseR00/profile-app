@@ -27,17 +27,16 @@ body{
   box-shadow: 10px 10px 5px #2A2B2A;
 }
 
-.nav-links{
-  list-style-type: none;
-  margin:5px;
-  padding:10px;
-  
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
 }
 .nav-item {
-  float: left;
-  margin-right: 20px;
-
+  float: none;
 }
+
 .nav-item a {
   display:block;
   margin-bottom: 20px;

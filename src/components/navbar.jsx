@@ -1,21 +1,23 @@
+import { useContext } from 'react';
+import ModeContext from '../context/ModeContext.jsx';
 
-import './Navbar.module.css';
-import styles from './toggleBtn.module.css';
+const Navbar = () => {
+    const { theme, toggleTheme } = useContext(ModeContext);
 
-
-
-const Navbar = ({toggleStyles, styles: toggleStylesClass}) => {
-    const buttonText = toggleStylesClass === "light-mode" ? "Dark Mode" : "Light Mode";
-    const styles = toggleStylesClass;
     return (
-        <div className="navbar">
+        <div className={`navbar ${theme === "light" ? "light-mode" : "dark-mode"}`}>
             <ul className="nav-links">
-                <li className="nav-item"><a href="#" >Home</a></li>
-                <li className="nav-item"><a href="#">About</a></li>
-                <li className="nav-item"><a href="#">Profiles</a></li>
+                <li><Link to="/">Home</Link></li>
+            <li><Link to="/aboutpage">About</Link></li>
+            <li><Link to="/add-profile">Add Profile</Link></li>
+            <li><Link to="/other-profiles">Other Profiles</Link></li>
+            <li><Link to="/profile-details">Profile Details</Link></li>
             </ul>
-            <button id={styles['mode-toggle']} onClick={toggleStyles}>{buttonText}</button>
+            <button onClick={toggleTheme}>
+                {theme === "light" ? "Dark" : "Light"}
+            </button>
         </div>
     );
 }
+
 export default Navbar;

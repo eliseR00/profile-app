@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react';
 import './App.css'
 
 import PageContainer from './components/PageContainer.jsx';
@@ -27,8 +27,14 @@ import styles from "./pages/AddProfilePage.module.css";
 import ProfileDetailPage from './pages/ProfileDetailPage.jsx';  
 
 
+import  ModeContext  from './context/ModeContext.jsx';
+
 
 function App() {
+
+  const { theme, toggleTheme } = useContext(ModeContext);
+
+ 
   const [profiles, setProfiles] = useState([
     { id: 1, name: "Ava", title: "UX Designer", email: "", bio: "", image: women},
     { id: 2, name: "Bradley", title: "Web Designer", email: "", bio: "", image: man},
@@ -83,17 +89,11 @@ function App() {
 
   return (
 
-    <PageContainer toggleStyles={toggleStyles} styles={styles}> 
+    
+
+  <PageContainer> 
       <HashRouter>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/aboutpage">About</Link></li>
-            <li><Link to="/add-profile">Add Profile</Link></li>
-            <li><Link to="/other-profiles">Other Profiles</Link></li>
-            <li><Link to="/profile-details">Profile Details</Link></li>
-          </ul>
-        </nav>
+      <Navbar toggleTheme={toggleTheme} theme={theme}/>
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -105,6 +105,7 @@ function App() {
       </Routes>
     </HashRouter>
   </PageContainer>
+    
 
     
           

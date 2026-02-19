@@ -8,8 +8,8 @@ const ProfileDetailPage = () => {
 
     useEffect(() => {
         fetch(`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-id.php?id=${id}`)
-            .then(res => res.json())
-            .then(res => setProfile(res))
+            .then((res) => res.json())
+            .then((res) => setProfile(res));
     }, [id]);
 
     return profile ? (
