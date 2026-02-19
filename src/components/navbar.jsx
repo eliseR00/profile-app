@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import ModeContext from '../context/ModeContext.jsx';
 
+import {Link} from "react-router-dom";
+
 const Navbar = () => {
     const { theme, toggleTheme } = useContext(ModeContext);
 
