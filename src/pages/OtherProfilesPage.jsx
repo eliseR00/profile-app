@@ -2,6 +2,7 @@ import FetchedProfiles from "../components/FetchedProfiles";
 import styles from "./AddProfilePage.module.css";
 
 function OtherProfilesPage({}) {
+
     return (
         <div>
             <h1>Other Profiles Page</h1>

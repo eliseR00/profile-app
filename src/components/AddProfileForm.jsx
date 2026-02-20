@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, useLayoutEffect} from "react";
 import formReducer from "../reducers/formReducer.js";
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +20,7 @@ const initialState = {
   isSubmitting: false,
   success: ""
   }
+
 
 
 
@@ -50,6 +51,10 @@ const AddProfileForm = ({ onAddProfile }) => {
   useEffect(() => {
     fieldRef.current.focus();
   }, [])
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);},
+    [title,name]);
 
 
   const handleChange = (event) => {
