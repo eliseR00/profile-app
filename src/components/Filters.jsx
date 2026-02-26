@@ -1,9 +1,12 @@
-const Filters = ({titles, title, handleChange, handleSearch, handleClick}) => {
+import { memo } from "react";
+
+const Filters = memo(({titles, title, name, handleChange, handleSearch, handleClick}) => {
     return (
-        <div className="fliter-container">
+           <div className="fliter-container">
             <div className="filter-dropdown">
                 <label htmlFor="title">Select a title: </label>
-                <select id="title" onChange={handleChange}>
+                <select id="title" onChange={handleChange} value={title}>
+
                     <option value="">ALL</option>
                     {
                         titles.map(title => <option key={title} value={title}>{title}</option>)
@@ -12,10 +15,10 @@ const Filters = ({titles, title, handleChange, handleSearch, handleClick}) => {
             </div>
             <div className="filter-search">
                 <label htmlFor="search">Search a name</label>
-                <input id="search" onChange={handleSearch} />
+                <input id="search" onChange={handleSearch} value={name}/>
             </div>
             <button className="clear-button" onClick={handleClick}>Clear Filters</button>
         </div>
     )
-}
+})
 export default Filters;

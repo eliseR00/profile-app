@@ -2,17 +2,18 @@
 import Card from "../components/Card";
 import Wrapper from "../components/Wrapper";
 import Filters from "../components/Filters";
+import {useMemo} from "react";
+import useFilteredProfiles from "../hooks/useFilteredProfiles.js";
 
-function HomePage({profiles=[], handleChangeTitle, handleSearch, handleClear, title, name}) {
+function HomePage({profiles = [], handleChangeTitle, handleSearch, handleClear, title, name}) {
     
-    const titles = [...new Set(profiles.map((profile) => profile.title))];
+    const titles = useMemo(() => 
+      [...new Set(profiles.map((profile) => profile.title))]
+    , [profiles]);
 
 
-    const filteredProfiles = profiles.filter(
-        (profile) =>
-        (profile.title === title || !title) &&
-        profile.name.toLowerCase().includes(name.toLowerCase()),
-    );
+  const filteredProfiles = useFilteredProfiles(profiles, title, name);
+
     
     
     return (

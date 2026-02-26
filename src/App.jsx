@@ -1,10 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback, lazy, Suspense } from 'react';
 import './App.css'
 
 import PageContainer from './components/PageContainer.jsx';
 import Navbar from './components/Navbar.jsx';
-import About from './components/About.jsx';
-import Card from './components/Card.jsx';
 import women from "./assets/women.png";
 import man from "./assets/man.png";
 import Wrapper from './components/Wrapper.jsx';
@@ -12,7 +10,7 @@ import Filters from './components/Filters.jsx';
 import AddProfileForm from './components/AddProfileForm.jsx';
 import './components/toggleBtn.module.css';
 import './components/pageContainer.module.css';
-import FetchedProfiles from './components/FetchedProfiles.jsx';
+//import FetchedProfiles from './components/FetchedProfiles.jsx';
 
 
 import { HashRouter, Routes, Route, Link} from "react-router-dom";
@@ -22,13 +20,16 @@ import AboutPage from './pages/AboutPage.jsx';
 import AddProfilePage from './pages/AddProfilePage.jsx';
 import OtherProfilesPage from './pages/OtherProfilesPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
-import styles from "./pages/AddProfilePage.module.css";
 
 import ProfileDetailPage from './pages/ProfileDetailPage.jsx';  
 
+import useFilters from './hooks/useFilters.js';
 
 import  ModeContext  from './context/ModeContext.jsx';
 
+import useFilteredProfiles from './hooks/useFilteredProfiles.js';
+
+const FetchProfilePage = lazy(() => import('./pages/FetchedProfilePage.jsx'));
 
 function App() {
 
@@ -50,33 +51,28 @@ function App() {
     console.log(clicked);
   };
 
-  const [title, setTitle] = useState("");
-  const [name, setName] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [name, setName] = useState("");
 
 
-  const handleChangeTitle = (event) => {
-    setTitle(event.target.value);
-    console.log(event.target.value);
-  }
+  // const handleChangeTitle = useCallback((event) => {
+  //   setTitle(event.target.value);
+  //   console.log(event.target.value);
+  // }, []);
 
-  const handleSearch = (event) => {
-    setName(event.target.value);
-    console.log(event.target.value === "");
-  }
+  // const handleSearch = useCallback((event) => {
+  //   setName(event.target.value);
+  //   console.log(event.target.value === "");
+  // }, []);
 
-  const handleClear = () => {
-    setTitle("");
-    setName("");
-  };
+  // const handleClear = useCallback(() => {
+  //   setTitle("");
+  //   setName("");
+  // }, []);
 
-  const filteredProfiles = profiles.filter(profile => (
-    (profile.title === title || !title) && (profile.name.toLowerCase().includes(name.toLowerCase()) || !name)
-  ));
+  const {title, name, handleChangeTitle, handleSearch, handleClear} = useFilters();
 
-   const [styles, setStyles] = useState("light-mode");
-   const toggleStyles = () => {
-      setStyles(styles === "light-mode" ? "dark-mode" : "light-mode");
-   }
+  const filteredProfiles = useFilteredProfiles(profiles, title, name);
 
    const updateProfiles = (profile) => {
     setProfiles(pre => [...pre, profile]);
@@ -100,6 +96,7 @@ function App() {
         <Route path="/aboutpage" element={<AboutPage />} />
         <Route path="/add-profile" element={<AddProfilePage updateProfiles={updateProfiles}/>} />
         <Route path="/other-profiles" element={<OtherProfilesPage />} />
+        <Route path="/fetched-profiles" element={<Suspense fallback="Loading..."><FetchProfilePage /></Suspense>} />
         <Route path="/other-profiles/profile/:id" element={<ProfileDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

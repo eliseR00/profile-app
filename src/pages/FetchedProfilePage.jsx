@@ -1,5 +1,5 @@
-import FetchedProfiles from "./components/FetchedProfiles";
-import Wrapper from "./components/Wrapper";
+import FetchedProfiles from "../components/FetchedProfiles";
+import Wrapper from "../components/Wrapper";
 
 const FetchedProfilePage = () => {
     return (

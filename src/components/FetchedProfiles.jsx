@@ -2,30 +2,32 @@ import {useState, useEffect} from 'react';
 import Filters from './Filters.jsx';
 import Card from './Card.jsx';
 import {Link} from "react-router-dom";
+import useFilters from '../hooks/useFilters.js';
 
 
 const FetchedProfiles = () => {
   
     const [titles, setTitles] = useState([]);
     //give intitialy value as empty array because we will be passing in arrays
-    const [title, setTitle] = useState("");
-    const [name, setName] = useState("");
+
     const [profiles, setProfiles] = useState([]);
     
-    const handleChangeTitle = (event) => {
-        setTitle(event.target.value);
-        console.log(event.target.value);
-    };
+    // const handleChangeTitle = (event) => {
+    //     setTitle(event.target.value);
+    //     console.log(event.target.value);
+    // };
 
-    const handleSearch = (event) => {
-        setName(event.target.value);
-        console.log(event.target.value === "");
-    }
+    // const handleSearch = (event) => {
+    //     setName(event.target.value);
+    //     console.log(event.target.value === "");
+    // }
 
-    const handleClear = () => {
-        setTitle("");
-        setName("");
-    }; 
+    // const handleClear = () => {
+    //     setTitle("");
+    //     setName("");
+    // }; 
+
+    const {title, name, handleChangeTitle, handleSearch, handleClear} = useFilters();
 
     //fetch titles
     useEffect(() => {
